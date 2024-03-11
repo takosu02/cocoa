@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    
+    return view('posts.index');
 });
+
+Route::get('/posts', [PostController::class, 'index']);
+
+//メール確認機能(?)
+/*Route::middleware('verified')->group(function() {
+    Route::group(['middleware' => 'auth:user'], function () {
+        //メール認証済みかつログイン済みのユーザーが見れる画面
+        Route::get('/home', 'HomeController@index')->name('home');
+    });
+});
+*/
