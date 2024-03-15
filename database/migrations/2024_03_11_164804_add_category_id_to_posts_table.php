@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignId('category_id')->constrained();
         });
     }
 
@@ -26,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
     }
 };

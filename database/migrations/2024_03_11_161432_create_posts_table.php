@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained();    //user_id
-            $table->foreignId("category_id")->constrained();    //category_id
-            $table->string('comment');
-            $table->timestamps();   //updated_at, created_at
+            $table->string('title', 50);
+            $table->string('body', 300);
+            $table->timestamps();   //updated_at,created_at
             $table->softDeletes();  //deleted_at
+            //$table->string('image_url')->nullable();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('posts');
     }
 };
