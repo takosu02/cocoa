@@ -16,11 +16,14 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
-    
-    return view('posts.index');
+    return view('posts.create');
 });
 
+Route::get('/', [PostController::class, 'index']);
+
 Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
 
 //メール確認機能(?)
 /*Route::middleware('verified')->group(function() {
