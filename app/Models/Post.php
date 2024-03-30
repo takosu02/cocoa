@@ -12,16 +12,26 @@ class Post extends Model
     
     public function getPaginateByLimit(int $limit_count = 10)
     {
-        return $this::with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
     protected $fillable = [
         'title',
-        'body'
+        'body',
+        'image_url',
+        'user_id'
     ];
 
-    //カテゴリーに対するリレーション
+    //categoryに対するリレーション
+    //多対多
     public function categories(){
         return $this->belongsToMany(Category::class);
+    }
+    
+    //userに対するリレーション
+    //一対多
+    public function user()
+    {
+        return $this->belongsTO(user::class);
     }
 }

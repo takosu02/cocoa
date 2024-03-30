@@ -7,11 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Contracts\Auth\MustVerifyEmail; //email確認機能
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    
+
+public function getOwnPaginateByLimit(int $limit_count = 5)
+{
+    return $this::with('posts')->find(Auth::id())->posts()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+}
 
     /**
      * The attributes that are mass assignable.
@@ -42,4 +49,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //postに対するリレーション
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    
+    //commentに対するリレーション
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
 }
