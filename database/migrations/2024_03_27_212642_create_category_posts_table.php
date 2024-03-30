@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('category_post', function (Blueprint $table) {
             //category_idとpost_idを外部キーに設定
             $table->foreignId('category_id')->constrained('categories');  
-            $table->foreignId('post_id')->cinstrained('posts');
+            $table->foreignId('post_id')->constrained('posts');
             $table->primary(['category_id', 'post_id']);
             //多対多のリレーション
         });
