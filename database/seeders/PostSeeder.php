@@ -26,9 +26,9 @@ class PostSeeder extends Seeder
             'image_url'=>'a',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
-            ]);
+        ]);
             
-            DB::table('posts')->insert([
+        DB::table('posts')->insert([
             'id' => '12',
             'user_id' =>'2',
             'title' => 'あいうえお',
@@ -40,6 +40,6 @@ class PostSeeder extends Seeder
             'image_url'=>'a',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
-            ]);
+        ]);
     }
 }
