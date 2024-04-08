@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     
     public function getPaginateByLimit(int $limit_count = 10)
     {
@@ -19,12 +20,19 @@ class Post extends Model
         'title',
         'body',
         'image_url',
-        'user_id'
+        'user_id',
+        'top',
+        'jacket',
+        'pant',
+        'other',
+        'category_id'
     ];
+    
 
     //categoryに対するリレーション
     //多対多
-    public function categories(){
+    public function categories()
+    {
         return $this->belongsToMany(Category::class);
     }
     
@@ -32,6 +40,11 @@ class Post extends Model
     //一対多
     public function user()
     {
-        return $this->belongsTO(user::class);
+        return $this->belongsTo(user::class);
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

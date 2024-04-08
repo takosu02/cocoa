@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'password'=>'aiueo',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
-            ]);
+        ]);
             
         DB::table('users')->insert([
             'id' => '2',
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'password'=>'kakikukeko',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
-            ]);
+        ]);
             
     }
 }
