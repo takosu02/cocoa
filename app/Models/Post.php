@@ -47,4 +47,9 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    
+    public function mypages()
+    {
+        return $this->belongsTo(Mypage::class);
+    }
 }

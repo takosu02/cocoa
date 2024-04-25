@@ -7,15 +7,18 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Mypage;
 use App\Http\Requests\PostRequest;
 use Cloudinary;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function index(Post $post, User $user)
     {
         $id=Auth::id();
+        $user_id=Auth::id();
+        $user = User::findOrFail($user_id);
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit(5)])->with(['post' => $post, 'auth_id' => $id]);
     }
     
@@ -68,4 +71,13 @@ class PostController extends Controller
         return view('posts.comment')->with(['post' => $post]);
     }
     
+    public function mypage(Post $post)
+    {
+        return view('posts.mypage');
+    }
+    
+    public function usershow(User $user)
+    {
+        return view('posts.usershow')->with(['user'=>$user]);
+    }
 }

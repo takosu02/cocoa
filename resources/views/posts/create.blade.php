@@ -10,7 +10,6 @@
     </head>
     </x-slot>
     <body>
-        <h1>user name</h1>
         <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
@@ -67,12 +66,12 @@
         <div class="footer">
             <a href="/">戻る</a>
         </div>
-                <p class="title_error" style="color:red">{{ $errors->first('post.title') }}</p>
-            </div>
-            <div class="body">
-                <p class="body_error" style="color:red">{{ $errors->first('post.body') }}</p>
-            </div>
-        </form>
+        <div class="title">
+            <p class="title_error" style="color:red">{{ $errors->first('post.title') }}</p>
+        </div>
+        <div class="body">
+            <p class="body_error" style="color:red">{{ $errors->first('post.body') }}</p>
+        </div>
     </body>
     </x-app-layout>
 </html>

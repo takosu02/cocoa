@@ -5,6 +5,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,8 +35,21 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::delete('/comments/{comment}', 'delete');
 });
 
-//Route::get('/categories/{category}', [CategoryController::class,'index'])->middleware("auth");
-Route::get('/user', [UserController::class, 'index'])->middleware("auth");
+Route::controller(UserController::class)->middleware(['auth'])->group(function(){
+    Route::get('/user', 'index')->name('index');
+    Route::get('/user', 'store')->name('store');
+    Route::post('/users', 'store')->name('store');
+    Route::get('/users/{user}', 'usershow')->name('usershow');
+});
+
+Route::controller(MypageController::class)->middleware(['auth'])->group(function(){
+    Route::get('/mypage', 'mypage')->name('mypage');
+    Route::get('/mypage/mypagecreate', 'create')->name('mypagecreate');
+});
+
+Route::controller(SearchController::class)->middleware(['auth'])->group(function(){
+   Route::get('/search', 'search')->name('search'); 
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

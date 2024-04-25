@@ -18,6 +18,12 @@
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('Index') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('mypage')" :active="request()->routeIs('mypage')">
+                        {{ __('Mypage') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('search')" :active="request()->routeIs('search')">
+                        {{ __('Search') }}
+                    </x-nav-link>
                 </div>
             </div>
 
