@@ -30,11 +30,11 @@
                     <h5 class='category'>
                         <h3>おすすめするアイテム</h3>
                         @foreach($post->categories as $category)
-                        {{ $category->name}}
+                        {{ $category->name }}
                         @endforeach
                     </h5>
                 </div>
-                <div>{{ $post->user->name }}</div>
+                <a href="/users/{{$post->user->id}}">{{$post->user->name}}</a>
                 @if ($auth_id == $post->user->id)
                 <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                     @csrf

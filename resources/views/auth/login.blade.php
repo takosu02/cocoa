@@ -31,6 +31,8 @@
                 <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
+        
+            <a href='/register'>新規登録</a>
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
@@ -42,6 +44,7 @@
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>
+            
         </div>
     </form>
 </x-guest-layout>

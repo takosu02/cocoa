@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Contracts\Auth\MustVerifyEmail; //email確認機能
 
 class User extends Authenticatable
 {
@@ -29,6 +28,11 @@ public function getOwnPaginateByLimit(int $limit_count = 5)
         'name',
         'email',
         'password',
+        'body',
+        'age',
+        'height',
+        'image_url',
+        'post_id',
     ];
 
     /**
@@ -60,6 +64,13 @@ public function getOwnPaginateByLimit(int $limit_count = 5)
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+    
+    //mypageに対するリレーション
+    //1対1
+    public function mypage()
+    {
+        return $this->hasOne(Mypage::class);
     }
     
 }
