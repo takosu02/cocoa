@@ -10,11 +10,18 @@
     </head>
     </x-slot>
     <body>
-        <form action="/posts" method="POST" enctype="multipart/form-data">
+        <form action="/search_results" method="GET" enctype="multipart/form-data">
             @csrf
-            <div class="title">
-                <h2>検索</h2>
+            <div>
+                <h2>カテゴリで検索</h2>
+                @foreach($categories as $category)
+                    <input type="checkbox" value="{{ $category->id }}" name="categories_array[]">
+                        {{$category->name}}
+                    </input>
+                @endforeach
             </div>
+            <input type="submit" value="検索"/>
+        </form>
     </body>
     </x-app-layout>
 </html>

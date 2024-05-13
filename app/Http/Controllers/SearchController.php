@@ -13,10 +13,12 @@ use App\Http\Requests\PostRequest;
 use Cloudinary;
 use Illuminate\Support\Facades\Auth;
 
+//検索ページの表示
 class SearchController extends Controller
 {
-    public function search(Post $post)
+    public function search(Category $categories)
     {
-        return view('posts.search');
+        return view('posts.search')->with(['categories' => $categories->get()]);
     }
+    
 }
