@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Search_resultController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -50,6 +51,12 @@ Route::controller(MypageController::class)->middleware(['auth'])->group(function
 Route::controller(SearchController::class)->middleware(['auth'])->group(function(){
    Route::get('/search', 'search')->name('search'); 
 });
+
+
+Route::controller(Search_resultController::class)->middleware(['auth'])->group(function(){
+   Route::get('/search_results','search_results')->name('search_results');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

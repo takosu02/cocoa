@@ -14,4 +14,8 @@ class Category extends Model
         return $this->belongsToMany(Post::class);
     }
     
+    public function getcategory($categoryIds)
+    {
+        return $this->posts()->with('category')->whereIn('id', $categoryIds)->get();
+    }
 }
